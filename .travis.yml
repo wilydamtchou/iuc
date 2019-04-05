@@ -1,0 +1,39 @@
+language: php
+php:
+  - 7.2
+
+services:
+  - mysql
+
+before_install:
+  - mysql -e 'CREATE DATABASE IF NOT EXISTS iuctest;'
+
+before_script:
+  - composer update
+  - wget -c http://static.phpmd.org/php/latest/phpmd.phar
+  - wget https://squizlabs.github.io/PHP_CodeSniffer/phpcs.phar -O phpcs
+  - wget -O phploc.phar https://phar.phpunit.de/phploc.phar
+  - wget -c http://static.pdepend.org/php/latest/pdepend.phar
+  - wget https://phar.phpunit.de/phpcpd-3.0.1.phar
+  - git clone git://github.com/djoos/Symfony2-coding-standard.git
+  - chmod +x phpmd.phar
+  - chmod +x phpcs
+  - chmod +x phploc.phar
+  - chmod +x phpcpd-3.0.1.phar
+  - chmod +x pdepend.phar
+  - chmod -R 777 Symfony2-coding-standard/
+
+script:
+  - php phpmd.phar src/ text cleancode,codesize,design,unusedcode,naming,controversial
+  - php phpcs --extensions=php --standard=PSR1,PSR2 src/
+  - php phpcs --extensions=php --config-set installed_paths Symfony2-coding-standard
+  - php phpcs --extensions=php --standard=Symfony src/
+  - php phpcs -v -s --report=gitblame src/
+  - php phpcpd-3.0.1.phar src/ 
+  - php phploc.phar src/
+  - php pdepend.phar --summary-xml=phpdepend_summary.xml src/
+  - phpunit --coverage-text
+
+notifications:
+  email:
+    - willydamtchou@gmail.com
