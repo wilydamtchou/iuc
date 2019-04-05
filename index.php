@@ -24,4 +24,17 @@ use iuc\Good\Student;
 require 'vendor/autoload.php';
 
 echo 'IUC Project Test';
-$student = new Student();
+
+main();
+
+/**
+ * Main function
+ *
+ * @return void
+ */
+function main() : void
+{
+    $student = new Student();
+
+    echo "Etudiant $student";
+}

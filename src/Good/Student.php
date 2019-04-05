@@ -36,7 +36,7 @@ class Student
      *
      * @var string
      */
-    public $name;
+    protected $name;
 
     /**
      * class
@@ -45,7 +45,7 @@ class Student
      *
      * @var string
      */
-    public $class;
+    protected $class;
 
     /**
      * school
@@ -54,7 +54,7 @@ class Student
      *
      * @var string
      */
-    public $school = "Unknown";
+    protected $school = "Unknown";
 
     /**
      * level
@@ -63,7 +63,34 @@ class Student
      *
      * @var int
      */
-    public $level = 0;
+    protected $level = 0;
+
+    /**
+     * creationDate
+     *
+     * The date of creation
+     *
+     * @var \DateTime
+     */
+    public $creationDate;
+
+    /**
+     * Constructor method
+     */
+    public function __construct()
+    {
+        $this->creationDate = new \DateTime();
+    }
+
+    /**
+     * To String method
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return "Name : {$this->name}, Class : {$this->class}";
+    }
 
     /**
      * getName
