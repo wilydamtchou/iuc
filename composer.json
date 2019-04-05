@@ -1,0 +1,23 @@
+{
+    "name": "iuc/iuc",
+    "description": "IUC Project Test",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "iuc\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "iuc\\Tests\\": "tests/"
+        }
+    },
+    "require": {
+        "php": ">=7.0"
+    },
+    "authors": [{
+        "name": "willydamtchou",
+        "email": "willydamtchou@gmail.com"
+    }],
+    "minimum-stability": "dev"
+}
