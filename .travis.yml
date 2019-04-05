@@ -28,11 +28,7 @@ script:
   - php phpcs --extensions=php --standard=PSR1,PSR2 src/
   - php phpcs --extensions=php --config-set installed_paths Symfony2-coding-standard
   - php phpcs --extensions=php --standard=Symfony src/
-  - php phpcs -v -s --report=gitblame src/
-  - php phpcpd-3.0.1.phar src/ 
-  - php phploc.phar src/
-  - php pdepend.phar --summary-xml=phpdepend_summary.xml src/
-  - phpunit --coverage-text
+# - phpunit --coverage-text
 
 notifications:
   email:
